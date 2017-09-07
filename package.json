@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "clean": "rimraf public",
-    "bundle": "cross-env NODE_ENV='production' webpack -p"
+    "bundle": "cross-env NODE_ENV='production' webpack -p",
+    "build": "run-s clean bundle"
   },
   "author": "Mike Semko",
   "license": "MIT",
