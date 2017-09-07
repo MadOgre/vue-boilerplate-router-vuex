@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "description": "Webpack boilerplate for Vue (Attempt 4)",
   "main": "server.js",
-  "scripts": {},
+  "scripts": {
+    "clean": "rimraf public"
+  },
   "author": "Mike Semko",
   "license": "MIT",
   "dependencies": {
