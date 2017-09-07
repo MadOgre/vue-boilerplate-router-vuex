@@ -4,7 +4,8 @@
   "description": "Webpack boilerplate for Vue (Attempt 4)",
   "main": "server.js",
   "scripts": {
-    "clean": "rimraf public"
+    "clean": "rimraf public",
+    "bundle": "cross-env NODE_ENV='production' webpack -p"
   },
   "author": "Mike Semko",
   "license": "MIT",
