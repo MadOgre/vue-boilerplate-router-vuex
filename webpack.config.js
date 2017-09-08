@@ -4,9 +4,14 @@ const path              = require("path"),
       webpack           = require("webpack"),
       hmrPlugin         = new webpack.HotModuleReplacementPlugin(),
       HtmlWebpackPlugin = require("html-webpack-plugin"),
+      ExtractTextPlugin = require("extract-text-webpack-plugin"),
       htmlWebpackPlugin = new HtmlWebpackPlugin({
         title: "Webpack Boilerplate Attempt 4",
         template: "./assets/index.ejs"
+      }),
+      extractTextPlugin = new ExtractTextPlugin({
+        filename: "[contenthash:10].style.css",
+        disable: process.env.NODE_ENV === "development"
       });
 
 module.exports = {
@@ -27,12 +32,29 @@ module.exports = {
             plugins: [require("babel-plugin-transform-object-rest-spread")]
           }
         }
+      }, {
+        test: /\.scss$/,
+        use: extractTextPlugin.extract({
+          use: [{
+            loader: "css-loader",
+            options: {
+              sourceMap: true
+            }
+          }, {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true
+            }
+          }],
+          fallback: "style-loader"
+        })
       }
     ]
   },
   plugins: [
     htmlWebpackPlugin,
-    hmrPlugin
+    hmrPlugin,
+    extractTextPlugin
   ],
   devServer: {
     open: true,
