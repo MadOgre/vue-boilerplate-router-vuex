@@ -33,5 +33,6 @@ module.exports = {
     },
     noInfo: true,
     contentBase: path.resolve(__dirname, "assets")
-  }
+  },
+  devtool: process.env.NODE_ENV === "development" ? "source-map" : false
 };
