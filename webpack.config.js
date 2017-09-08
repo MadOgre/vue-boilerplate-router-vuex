@@ -15,6 +15,21 @@ module.exports = {
     path: path.resolve(__dirname, "public"),
     filename: "[hash:10].bundle.js"
   },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["env"],
+            plugins: [require("babel-plugin-transform-object-rest-spread")]
+          }
+        }
+      }
+    ]
+  },
   plugins: [
     htmlWebpackPlugin,
     hmrPlugin
