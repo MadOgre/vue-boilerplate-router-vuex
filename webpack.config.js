@@ -33,6 +33,22 @@ module.exports = {
           }
         }
       }, {
+        test: /\.vue$/,
+        loader: "vue-loader",
+        options: {
+          postcss: [require("autoprefixer")()],
+          extractCSS: true,
+          loaders: {
+            js: {
+              loader: "babel-loader",
+              options: {
+                presets: ["env"],
+                plugins: ["babel-plugin-transform-object-rest-spread"]                
+              }
+            }
+          }
+        }
+      }, {
         test: /\.scss$/,
         use: extractTextPlugin.extract({
           use: [{
