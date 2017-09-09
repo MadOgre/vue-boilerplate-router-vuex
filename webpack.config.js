@@ -70,6 +70,17 @@ module.exports = {
           }],
           fallback: "style-loader"
         })
+      }, {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              outputPath: "img/",
+              name: "[name].[hash:10].[ext]"
+            }
+          }
+        ]
       }
     ]
   },
