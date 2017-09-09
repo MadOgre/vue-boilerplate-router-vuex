@@ -32,6 +32,7 @@
     "run-all": "^1.0.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
+    "vue": "^2.4.2",
     "webpack": "^3.5.6",
     "webpack-dev-server": "^2.7.1"
   }
