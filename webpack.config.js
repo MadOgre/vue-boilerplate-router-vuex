@@ -5,6 +5,8 @@ const path              = require("path"),
       hmrPlugin         = new webpack.HotModuleReplacementPlugin(),
       HtmlWebpackPlugin = require("html-webpack-plugin"),
       ExtractTextPlugin = require("extract-text-webpack-plugin"),
+      ImageminPlugin    = require("imagemin-webpack-plugin").default,
+      imageminMozjpeg   = require("imagemin-mozjpeg"),
       htmlWebpackPlugin = new HtmlWebpackPlugin({
         title: "Webpack Boilerplate Attempt 4",
         template: "./assets/index.ejs"
@@ -12,6 +14,18 @@ const path              = require("path"),
       extractTextPlugin = new ExtractTextPlugin({
         filename: "[contenthash:10].style.css",
         disable: process.env.NODE_ENV === "development"
+      }),
+      imageminPlugin    = new ImageminPlugin({
+        disable: process.env.NODE_ENV !== "production",
+        pngquant: {
+          quality: "0-75"
+        },
+        plugins: [
+          imageminMozjpeg({
+            quality: 75,
+            progressive: true
+          })
+        ]
       });
 
 module.exports = {
@@ -87,7 +101,8 @@ module.exports = {
   plugins: [
     htmlWebpackPlugin,
     hmrPlugin,
-    extractTextPlugin
+    extractTextPlugin,
+    imageminPlugin
   ],
   devServer: {
     open: true,
