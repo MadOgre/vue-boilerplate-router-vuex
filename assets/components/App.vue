@@ -1,6 +1,7 @@
 <template>
   <div class="main-wrapper">
     <site-header/>
+    <router-view/>
     <site-footer/>
   </div>
 </template>
